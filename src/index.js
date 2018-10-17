@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'public/index.css';
+import './styles/index.css';
 // import App from '/src/components/App';
 import * as serviceWorker from './serviceWorker';
 import store from './store';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+// import { createStore, applyMiddleware } from 'redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import SignInForm from './components/signin-form';
 import SignUpForm from './components/signup-form';
 import reduxThunk from 'redux-thunk';
-import { AUTHENTICATED } from 'src/actions/auth';
+import { AUTHENTICATED } from './actions/index.js';
 
 
 const user = localStorage.getItem('user');
@@ -22,8 +22,10 @@ if(user){
 ReactDOM.render(
   <Provider store={store}>
     <Router>
+      <div>
       <Route path='/'component={SignInForm} />
       <Route path='/'component={SignUpForm} />
+      </div>
     </Router>
   </Provider>,
 

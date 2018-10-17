@@ -1,17 +1,18 @@
 import { LOGIN_USER, SIGN_UP_USER } from '../actions';
-import { combineReducers } from 'redux';
-import { reducer as formReducer } from 'redux-form';
-import authReducer from './auth_reducer';
+// import { combineReducers } from 'redux';
+// import { reducer as formReducer } from 'redux-form';
+// import authReducer from './auth_reducer';
 
-const rootReducer = combineReducers({
-  form: formReducer,
-  auth: authReducer
-});
+// const rootReducer = combineReducers({
+//   form: formReducer,
+//   auth: authReducer
+// });
 
 const initialState = {
   action: '',
   email: '',
-  passWord: ''
+  passWord: '',
+  loggedIn: false
 };
 
 export const rentItForwardReducer = (state = initialState, action) => {
@@ -27,4 +28,3 @@ export const rentItForwardReducer = (state = initialState, action) => {
   return state;
 };
 
-export default rootReducer;

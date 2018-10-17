@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { signUpUser } from 'actions/index.js';
+import { signUpUser } from '../actions/index.js';
 import { Field, reduxForm } from 'redux-form';
 
 class SignUpForm extends React.Component {
@@ -20,11 +20,11 @@ class SignUpForm extends React.Component {
         <form onSubmit={e => this.onSubmit(e)}>
           <input type="text" name="firstName" id="firstName" />
           <input type="text" name="lastName" id="lastName" />
-          <input type="email" name="email" id="email" aria-labelledby="email" />
+          <input type="signupEmail" name="signupEmail" id="signupEmail" aria-labelledby="signupEmail" />
           <input
             type="password"
-            name="passWord"
-            id="passWord"
+            name="signupPassWord"
+            id="signupPassWord"
             aria-labelledby="password"
           />
           <input

@@ -1,13 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {signUpUser} from 'actions/index.js';
+import {loginUser} from '../actions';
 
 class SignInForm extends React.Component {
   render() {
-    const onSubmit = function(event) {
+    const onSubmit = (event) => {
       event.preventDefault();
+      console.log(event);
       this.props.dispatch(
-        signUpUser({
+        
+        loginUser({
           email: event.target.email.value,
           passWord: event.target.passWord.value
         })
@@ -24,7 +26,7 @@ class SignInForm extends React.Component {
             id="passWord"
             aria-labelledby="password"
           />
-          <button type="submit" name="submit" id="guessButton">
+          <button type="submit" name="submit" id="signinButton">
             Submit
           </button>
         </form>
