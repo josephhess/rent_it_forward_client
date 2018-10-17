@@ -1,0 +1,28 @@
+{
+  "name": "capstone1",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:8080/",
+  "devDependencies": {
+    "enzyme": "^3.1.1",
+    "react-scripts": "1.0.17",
+    "react-test-renderer": "^16.1.1"
+  },
+  "dependencies": {
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-redux": "^5.0.2",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "create-react-app": "^2.0.4",
+    "axios": "^0.18.0",
+    "redux-form": "7.4.2",
+    "jwt-simple":"^0.5.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
