@@ -23,7 +23,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <div>
-      <Route path='/'component={SignInForm} />
+      <Route path='/login'component={SignInForm} />
       <Route path='/'component={SignUpForm} />
       </div>
     </Router>

@@ -16,6 +16,7 @@ const initialState = {
 };
 
 export const rentItForwardReducer = (state = initialState, action) => {
+  // console.log(action);
   if (action.type === LOGIN_USER) {
     return Object.assign({}, state, {
       passWord: action.payload.passWord,

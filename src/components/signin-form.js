@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import {loginUser} from '../actions';
 
 class SignInForm extends React.Component {
-  render() {
-    const onSubmit = (event) => {
+  
+    onSubmit(event) {
       event.preventDefault();
       console.log(event);
       this.props.dispatch(
@@ -15,7 +15,7 @@ class SignInForm extends React.Component {
         })
       );
     };
-    
+    render() {
     return (
       <section>
         <form onSubmit={ e => this.onSubmit(e)}>
