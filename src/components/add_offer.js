@@ -1,11 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import NavDropdown from './dropdown';
+import {getItemById} from '../actions';
 import {makeOffer} from '../actions';
 // import {Redirect} from 'react-router-dom';
 
 class MakeOffer extends React.Component {
 
+  componentDidMount(){
+    this.props.dispatch(getItemById(this.props.location.state.id))
+  }
   onSubmit(event){
     event.preventDefault();
     this.props.dispatch(
@@ -20,16 +24,16 @@ class MakeOffer extends React.Component {
   }
 
   render(){
+    console.log(this.props.item)
     return(
       <section>
         <NavDropdown/>
+        <div>Item Name: {this.props.item.name}</div>
+        <div>Asking Price: {this.props.item.initial_price}</div>
+        <div>Description: {this.props.item.description}</div>
         <form onSubmit={e => this.onSubmit(e)}>
-          <label htmlFor="item_name">Item Name</label>
-          <input className="add_item_input" type="text" name="item_name" id="itemName" ></input>
-          <label htmlFor="price">Price</label>
+          <label htmlFor="price">Your Offer</label>
           <input className="add_item_input" type="number" name="price" id="itemPrice" ></input>
-          <label htmlFor="description">Item Description</label>
-          <textarea className="add_item_input"  name="itemDescription" id="description" ></textarea>
           <button type="submit" name="submit" id="addItemButton">
             Submit
           </button>
@@ -41,7 +45,7 @@ class MakeOffer extends React.Component {
 
 export const mapStateToProps = (state) => {
   return {
-    loggedIn: state.loggedIn,
+    item: state.current_item,
     
   }
 };

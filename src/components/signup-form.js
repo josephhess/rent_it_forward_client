@@ -19,7 +19,7 @@ class SignUpForm extends React.Component {
   }
   render() {
     if (this.props.loggedIn){
-      <Redirect to="/showall"/>
+      return <Redirect to="/showall"/>
     }
     return (
       <section>

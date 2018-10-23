@@ -32,6 +32,12 @@ export const showAllItems = payload => ({
   payload
 })
 
+export const SET_CURRENT_ITEM = 'SET_CURRENT_ITEM';
+export const setCurrentItem = payload => ({
+  type: SET_CURRENT_ITEM,
+  payload
+})
+
 
 
 
@@ -61,12 +67,12 @@ export const getAllItems = () => dispatch  => {
 
 export function createItem(params) {
   return function action(dispatch, getState) {
-    fetch(`${API_BASE_URL}/items`, {
-      method: 'POST',
-      body: JSON.stringify(params),
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${getState().token}`
+    return fetch(`${API_BASE_URL}/items`, {
+            method: 'POST',
+            body: JSON.stringify(params),
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${getState().token}`
       }
     })
     .then(res => {
@@ -76,6 +82,7 @@ export function createItem(params) {
       return res.json();
     })
     .then(item => dispatch(addItem(item)))
+    .then(() => dispatch(getAllItems()))
     .catch(err => console.log('create items error', err))
   }
 }
@@ -117,6 +124,20 @@ export function postUserLogin(params) {
     })
     .then(user => dispatch(loginUser(user)))
     .catch(err => console.log('login user failed', err))
+  }
+}
+
+export function getItemById(id){
+  return function action(dispatch){
+    fetch(`${API_BASE_URL}/items/${id}`)
+      .then(res => {
+        if(!res.ok){
+          return Promise.reject(res.statusText);
+        }
+        return res.json();
+      })
+      .then(item => dispatch(setCurrentItem(item)))
+      .catch(err => console.log('retrieve item failed', err))
   }
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import NavDropdown from './dropdown';
 import {createItem} from '../actions';
-// import {Redirect} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
 class AddItem extends React.Component {
 
@@ -17,9 +17,13 @@ class AddItem extends React.Component {
         }
       )
     )
+    .then(() => this.props.history.push('/showall'))
   }
 
   render(){
+    if(!this.props.current_user_id){
+      return <Redirect to='/'/>
+    }
     return(
       <section>
         <NavDropdown/>
@@ -41,9 +45,7 @@ class AddItem extends React.Component {
 
 export const mapStateToProps = (state) => {
   return {
-    loggedIn: state.loggedIn,
     current_user_id: state.current_user_id
-  
   }
 };
 

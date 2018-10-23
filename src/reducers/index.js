@@ -1,5 +1,5 @@
 // import React from 'react';
-import { LOGIN_USER, SIGN_UP_USER ,ADD_ITEM,SHOW_ALL_ITEMS,MAKE_OFFER} from '../actions';
+import { LOGIN_USER, SIGN_UP_USER ,ADD_ITEM,SHOW_ALL_ITEMS,MAKE_OFFER,SET_CURRENT_ITEM} from '../actions';
 import jwt_decode from 'jwt-decode';
 
 const initialState = {
@@ -50,6 +50,11 @@ export const rentItForwardReducer = (state = initialState, action) => {
     return Object.assign({}, state, {
       current_offer: action.payload
     })   
+  }
+  if (action.type === SET_CURRENT_ITEM){
+    return Object.assign({}, state, {
+      current_item: action.payload
+    })
   }
   return state;
 };

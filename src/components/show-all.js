@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import NavDropdown from './dropdown';
 import '../styles/showall.css';
 import {getAllItems} from '../actions';
-require('dotenv');
+import {Redirect, Link} from 'react-router-dom';
 
 class ShowAll extends React.Component {
 
@@ -12,11 +12,15 @@ componentDidMount(){
 }
 
   render(){
-    console.log(this.props.items)
+    if( !this.props.current_user_id ){
+       return <Redirect to="/"/>
+      }
+
     const htmlData = this.props.items.map( (item, index) => {
       return (
       <div key={index}>
-         <div className="table_display"><a href={`http://localhost:3000/show_item/${item._id}`}>click</a></div>
+         {/* <div className="table_display"><a href={`http://localhost:3000/show_item/${item._id}`}>click</a></div> */}
+         <div className="table_display"><Link to={{pathname: 'makeOffer', state:  {id: item._id}} }>click</Link></div>
          <div className="table_display">{item.name}</div>
          <div className="table_display">{item.initial_price}</div>
        </div>
@@ -38,6 +42,9 @@ componentDidMount(){
 }
 
 export const mapStateToProps = (state) => {
-  return {items: state.allItems}
+  return {
+    items: state.allItems,
+    current_user_id: state.current_user_id
+  }
 }
 export default connect(mapStateToProps)(ShowAll);
