@@ -1,26 +1,27 @@
 // import React from 'react';
 import { LOGIN_USER, SIGN_UP_USER ,ADD_ITEM,SHOW_ALL_ITEMS,MAKE_OFFER} from '../actions';
-
+import jwt_decode from 'jwt-decode';
 
 const initialState = {
   action: '',
   loggedIn: false,
   token: '',
   email: '',
-  passWord: '',
   firstname: '',
   lastname: '',
   zipcode: '',
   allItems: [],
   current_item: {},
   current_offer: {},
-  current_user_id: "5bcbe23d3fc0505760e911f7"
+  current_user_id: ""
 };
 
 export const rentItForwardReducer = (state = initialState, action) => {
   if (action.type === LOGIN_USER) {
+    const decodedUser = jwt_decode(action.payload.authToken).user;
     return Object.assign({}, state, {
-      token: action.payload.token
+      token: action.payload.authToken,
+      current_user_id: decodedUser.id
     });
   }
   if (action.type === SIGN_UP_USER) {

@@ -15,7 +15,7 @@ class SignInForm extends React.Component {
       );
     };
     render() {
-      if(this.props.loggedIn){
+      if(this.props.token){
        return <Redirect to="/showall"/>
       }
     return (
@@ -51,7 +51,7 @@ class SignInForm extends React.Component {
 
 
 export const mapStateToProps = (state) => {
-  return {loggedIn: state.loggedIn}
+  return {token: state.token}
 };
 
 export default connect(mapStateToProps)(SignInForm);
