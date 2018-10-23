@@ -1,38 +1,50 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { signUpUser } from '../actions/index.js';
-import { Field, reduxForm } from 'redux-form';
+// import { signUpUser } from '../actions/index.js';
+import {Redirect} from 'react-router-dom';
+import { createUser } from '../actions'
 
 class SignUpForm extends React.Component {
-  render() {
-  const onSubmit = (event) => {
+  
+  onSubmit(event) {
     event.preventDefault();
-    this.props.dispatch(
-      signUpUser({
-        email: event.target.email.value,
-        passWord: event.target.passWord.value
+      createUser({
+        email: event.target.signupEmail.value,
+        password: event.target.signupPassWord.value,
+        firstName: event.target.firstName.value,
+        lastName: event.target.lastName.value,
+        zipCode: event.target.zipCode.value
       })
-    );
+   
   }
- 
+  render() {
+    if (this.props.loggedIn){
+      <Redirect to="/showall"/>
+    }
     return (
       <section>
         <form onSubmit={e => this.onSubmit(e)}>
+          <label htmlFor="firstName">first name</label>
           <input type="text" name="firstName" id="firstName" />
+          <label htmlFor="lastName">last name</label>
           <input type="text" name="lastName" id="lastName" />
+          <label htmlFor="signupEmail">email</label>
           <input type="signupEmail" name="signupEmail" id="signupEmail" aria-labelledby="signupEmail" />
+          <label htmlFor="signupPassWord">password</label>
           <input
             type="password"
             name="signupPassWord"
             id="signupPassWord"
             aria-labelledby="password"
           />
+          <label htmlFor="passWordConfirm">confirm password</label>
           <input
             type="password"
             name="passWordConfirm"
             id="passWordConfirm"
             aria-labelledby="password confirm"
           />
+          <label htmlFor="zipCode">zip code</label>
           <input type="text" name="zipCode" id="zipCode" />
           <button type="submit" name="submit" id="guessButton">
             Submit
@@ -43,8 +55,8 @@ class SignUpForm extends React.Component {
   }
 }
 
-export const mapStateToProps = input => ({
-  input
-});
+export const mapStateToProps = (state) => {
+  return {loggedIn: state.loggedIn}
+};
 
 export default connect(mapStateToProps)(SignUpForm);

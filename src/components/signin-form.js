@@ -1,25 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {loginUser} from '../actions';
+import {postUserLogin} from '../actions';
+import {Redirect} from 'react-router-dom';
 
 class SignInForm extends React.Component {
-  
+ 
     onSubmit(event) {
       event.preventDefault();
-      console.log(event);
       this.props.dispatch(
-        
-        loginUser({
-          email: event.target.email.value,
-          passWord: event.target.passWord.value
+        postUserLogin({
+          username: event.target.email.value,
+          password: event.target.passWord.value,
         })
       );
     };
     render() {
+      if(this.props.loggedIn){
+       return <Redirect to="/showall"/>
+      }
     return (
       <section>
         <form onSubmit={ e => this.onSubmit(e)}>
+          <label htmlFor="email">email</label>
           <input type="email" name="email" id="email" aria-labelledby="email" />
+          <label htmlFor="password">password</label>
           <input
             type="password"
             name="passWord"
@@ -46,8 +50,8 @@ class SignInForm extends React.Component {
 }
 
 
-export const mapStateToProps = input => ({
-  input
-});
+export const mapStateToProps = (state) => {
+  return {loggedIn: state.loggedIn}
+};
 
 export default connect(mapStateToProps)(SignInForm);

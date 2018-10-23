@@ -1,4 +1,6 @@
-import axios from 'axios';
+// import React from 'react';
+import {API_BASE_URL} from '../config.js';
+
 
 export const LOGIN_USER = 'LOGIN_USER';
 export const loginUser = payload => ({
@@ -12,26 +14,110 @@ export const signUpUser = payload => ({
   payload
 });
 
+export const ADD_ITEM = 'ADD_ITEM';
+export const addItem = payload => ({
+  type: ADD_ITEM,
+  payload
+})
 
-export const AUTHENTICATED = 'authenticated_user';
-export const UNAUTHENTICATED = 'unauthenticated_user';
-export const AUTHENTICATION_ERROR = 'authentication_error';
+export const MAKE_OFFER = 'MAKE_OFFER';
+export const makeOffer = payload => ({
+  type: MAKE_OFFER,
+  payload
+})
 
-const URL = 'http://localhost:3000/';
+export const SHOW_ALL_ITEMS = 'SHOW_ALL_ITEMS';
+export const showAllItems = payload => ({
+  type: SHOW_ALL_ITEMS,
+  payload
+})
 
-export function signInAction({ email, password }, history) {
-  return async dispatch => {
-    try {
-      const res = await axios.post(`${URL}/signin`, { email, password });
 
-      dispatch({ type: AUTHENTICATED });
-      localStorage.setItem('user', res.data.token);
-      history.push('/secret');
-    } catch (error) {
-      dispatch({
-        type: AUTHENTICATION_ERROR,
-        payload: 'Invalid email or password'
-      });
+
+
+
+export function createUser(params) {
+  fetch(`${API_BASE_URL}/users`, {
+    method: 'POST',
+    body: JSON.stringify(params),
+    headers: {
+      'Content-Type': 'application/json',
     }
-  };
+  }).then(res => res.json())
+  // .then(json => dispatch(push('/showall')))
+  .catch(err => console.log('create user error', err))
 }
+
+export const getAllItems = () => dispatch  => {
+  fetch(`${API_BASE_URL}/items`)
+    .then(res => {
+      if (!res.ok){
+        return Promise.reject(res.statusText);
+      }
+      return res.json();
+    })
+    .then(data => dispatch(showAllItems(data)));
+}
+
+export function createItem(params) {
+  return function action(dispatch, getState) {
+    fetch(`${API_BASE_URL}/items`, {
+      method: 'POST',
+      body: JSON.stringify(params),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${getState().token}`
+      }
+    })
+    .then(res => {
+      if(!res.ok){
+        return Promise.reject(res.statusText);
+      }
+      return res.json();
+    })
+    .then(item => dispatch(addItem(item)))
+    .catch(err => console.log('create items error', err))
+  }
+}
+
+export function createOffer(params) {
+  return function action(dispatch) {
+    fetch(`${API_BASE_URL}/offers`, {
+      method: 'POST',
+      body: JSON.stringify(params),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => {
+      if(!res.ok){
+        return Promise.reject(res.statusText);
+      }
+      return res.json();
+    })
+    .then(offer => dispatch(makeOffer(offer)))
+    .catch(err => console.log('create offer error', err))
+  }
+}
+
+export function postUserLogin(params) {
+  return function action(dispatch) {
+    fetch(`${API_BASE_URL}/auth/login`, {
+      method: 'POST',
+      body: JSON.stringify(params),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => {
+      if(!res.ok){
+        return Promise.reject(res.statusText);
+      }
+      return res.json();
+    })
+    .then(user => dispatch(loginUser(user)))
+    .catch(err => console.log('login user failed', err))
+  }
+}
+
+
