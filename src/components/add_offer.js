@@ -14,7 +14,7 @@ class MakeOffer extends React.Component {
     event.preventDefault();
     this.props.dispatch(
       makeOffer({
-        item_name: event.target.user_id.value,
+          item_name: event.target.user_id.value,
           user_id: event.target.user_id.value,
           price: event.target.price.value,
           description: event.target.description.value
