@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import NavDropdown from './dropdown';
 import {createItem} from '../actions';
 import {Redirect} from 'react-router-dom';
 
@@ -21,12 +20,11 @@ class AddItem extends React.Component {
   }
 
   render(){
-    if(!this.props.current_user_id){
-      return <Redirect to='/'/>
-    }
+    // if(!this.props.current_user_id){
+    //   return <Redirect to='/'/>
+    // }
     return(
       <section>
-        <NavDropdown/>
         <form onSubmit={e => this.onSubmit(e)}>
           <label htmlFor="item_name">Item Name</label>
           <input className="add_item_input" type="text" name="item_name" id="itemName" ></input>

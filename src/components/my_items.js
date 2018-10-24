@@ -1,6 +1,4 @@
 import React from 'react';
-import NavDropdown from './dropdown';
-
 
   const dummyData = [
     {id: 1 ,name: 'Dewalt table saw' ,initial_price: 400},
@@ -11,11 +9,11 @@ import NavDropdown from './dropdown';
   
   const htmlData = dummyData.map( item => {
    return (
-   <div>
-      <div className="table_display"><a href={`http://localhost:3000/show_item/${item.id}`}>click</a></div>
-      <div className="table_display">{item.name}</div>
-      <div className="table_display">{item.initial_price}</div>
-    </div>
+   <tr>
+      <td><a href={`http://localhost:3000/show_item/${item.id}`}>click</a></td>
+      <td>{item.name}</td>
+      <td>{item.initial_price}</td>
+    </tr>
    )
   })
   
@@ -24,20 +22,27 @@ import NavDropdown from './dropdown';
    
     return (
     <section>
-      <NavDropdown/>
       <section>
       <span>My Items</span>
-      <div class="table_display">view item</div>
-      <div class="table_display">item name</div>
-      <div class="table_display">asking price</div> 
-      {htmlData}
+        <table>
+          <tr>
+            <td>view item</td>
+            <td>item name</td>
+            <td>asking price</td>
+          </tr>
+          {htmlData}
+        </table>
       </section>
       <section>
       <span>My Offers</span>
-      <div class="table_display">view item</div>
-      <div class="table_display">item name</div>
-      <div class="table_display">offer price</div> 
-      {htmlData}
+        <table>
+          <tr>
+            <td>view item</td>
+            <td>item name</td>
+            <td>offer price</td>
+          </tr>
+          {htmlData}
+        </table>
       </section>
       
     </section>

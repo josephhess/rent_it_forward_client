@@ -31,10 +31,11 @@ class SignInForm extends React.Component {
             aria-labelledby="password"
           />
           <button type="submit" name="submit" id="signinButton">
-            Submit
+            Log In
           </button>
         </form>
         <section>
+          <span className="linerule"></span>
           <p>
             Rent it forward is a place that enables you to buy the things you
             only need on a temporary basis and find people who are ready to buy
@@ -43,6 +44,7 @@ class SignInForm extends React.Component {
             or Sign up to view all our items, add items you are interested in,
             and make offers on items other members have posted.
           </p>
+          <span className="linerule"></span>
         </section>
       </section>
     );

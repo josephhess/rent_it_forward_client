@@ -1,11 +1,20 @@
 import React from 'react';
 import {DropdownToggle,DropdownMenu, DropdownItem, UncontrolledDropdown} from 'reactstrap';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
-export default function NavDropdown(props) {
+class NavDropdown extends React.Component {
 
+  render(){
+    if(!this.props.token){
+      return (
+        <header className="header">
+          <h1>Rent It Forward</h1>
+        </header>
+      )
+    }
   return (
-    <div> 
+    <header className="header">
     <UncontrolledDropdown setActiveFromChild>
     <DropdownToggle tag="a" className="nav_link">
       Navigation
@@ -18,6 +27,14 @@ export default function NavDropdown(props) {
       <DropdownItem tag={Link} to="/myItems">My items/offers</DropdownItem>
     </DropdownMenu>
     </UncontrolledDropdown>
-  </div>
+    <h1>Rent It Forward</h1>
+  </header>
   )
+  }
+
 }
+export const mapStateToProps = (state) => {
+  return {token: state.token}
+};
+
+export default connect(mapStateToProps)(NavDropdown);

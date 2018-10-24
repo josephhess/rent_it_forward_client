@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { signUpUser } from '../actions/index.js';
 import {Redirect} from 'react-router-dom';
 import { createUser } from '../actions'
 
@@ -47,7 +46,7 @@ class SignUpForm extends React.Component {
           <label htmlFor="zipCode">zip code</label>
           <input type="text" name="zipCode" id="zipCode" />
           <button type="submit" name="submit" id="guessButton">
-            Submit
+            Sign Up
           </button>
         </form>
       </section>
