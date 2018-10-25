@@ -20,9 +20,9 @@ class AddItem extends React.Component {
   }
 
   render(){
-    // if(!this.props.current_user_id){
-    //   return <Redirect to='/'/>
-    // }
+    if(!this.props.current_user_id){
+      return <Redirect to='/'/>
+    }
     return(
       <section>
         <form onSubmit={e => this.onSubmit(e)}>

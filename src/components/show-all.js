@@ -11,9 +11,9 @@ componentDidMount(){
 }
 
   render(){
-    // if( !this.props.current_user_id ){
-    //    return <Redirect to="/"/>
-    //   }
+    if( !this.props.current_user_id ){
+       return <Redirect to="/"/>
+      }
 
     const htmlData = this.props.items.map( (item, index) => {
       return (
