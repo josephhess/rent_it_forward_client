@@ -16,10 +16,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 
 ReactDOM.render(
-
- 
   <Provider store={store}>
-   
     <BrowserRouter>
       <div>
       <NavDropDown/>
