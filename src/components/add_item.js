@@ -16,7 +16,7 @@ class AddItem extends React.Component {
         }
       )
     )
-    .then(() => this.props.history.push('/showall'))
+    .then(() => this.props.history.push('/myitems'))
   }
 
   render(){

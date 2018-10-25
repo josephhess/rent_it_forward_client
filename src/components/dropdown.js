@@ -23,7 +23,6 @@ class NavDropdown extends React.Component {
       <DropdownItem tag={Link} to="/">Home</DropdownItem>
       <DropdownItem tag={Link} to="/showall">View Items</DropdownItem>
       <DropdownItem tag={Link} to="/addItem">Add Item</DropdownItem>
-      <DropdownItem tag={Link} to="/makeOffer">Make Offer</DropdownItem>
       <DropdownItem tag={Link} to="/myItems">My items/offers</DropdownItem>
     </DropdownMenu>
     </UncontrolledDropdown>

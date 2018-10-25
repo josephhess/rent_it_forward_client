@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getItemById} from '../actions';
-import {makeOffer} from '../actions';
+import {createOffer} from '../actions';
 // import {Redirect} from 'react-router-dom';
 
 class MakeOffer extends React.Component {
@@ -12,14 +12,16 @@ class MakeOffer extends React.Component {
   onSubmit(event){
     event.preventDefault();
     this.props.dispatch(
-      makeOffer({
-          item_name: event.target.user_id.value,
-          user_id: event.target.user_id.value,
-          price: event.target.price.value,
-          description: event.target.description.value
+      createOffer({
+          item_id: this.props.item._id,
+          buyer_user_id: this.props.current_user_id,
+          owner_user_id: this.props.item.user_id,
+          offer_price: event.target.price.value,
+          item_name: this.props.item.name
         }
       )
     )
+    .then(() => this.props.history.push('/myitems'))
   }
 
   render(){
@@ -47,6 +49,7 @@ class MakeOffer extends React.Component {
 export const mapStateToProps = (state) => {
   return {
     item: state.current_item,
+    current_user_id: state.current_user_id
     
   }
 };

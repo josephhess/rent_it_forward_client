@@ -36,7 +36,7 @@ class SignInForm extends React.Component {
         </form>
         <section>
           <span className="linerule"></span>
-          <p>
+          <p className="landing_text">
             Rent it forward is a place that enables you to buy the things you
             only need on a temporary basis and find people who are ready to buy
             it from you when you are done with it. It's also a place where you

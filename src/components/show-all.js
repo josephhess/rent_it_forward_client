@@ -18,11 +18,9 @@ componentDidMount(){
     const htmlData = this.props.items.map( (item, index) => {
       return (
       <tr key={index}>
-         <td ><Link className="test_link" to={{pathname: 'makeOffer', state:  {id: item._id}} }>click</Link></td>
-         <td >{item.name}</td>
+         <td ><Link to={{pathname: 'makeOffer', state:  {id: item._id}} }>{item.name}</Link></td>
          <td >{item.initial_price}</td>
-         <td>{item.description}</td>
-
+         <td className="display_if_wide">{item.description}</td>
        </tr>
       )
      })
@@ -30,13 +28,14 @@ componentDidMount(){
     return (
       <section>
         <table className="table_parent">
+        <tbody>
           <tr>
-            <td >view item</td>
             <td >item name</td>
             <td >asking price</td>
-            <td>description</td>
+            <td className="display_if_wide">description</td>
         </tr>
         {htmlData}
+        </tbody>
         </table>
       </section>
     ) 

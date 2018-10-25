@@ -38,9 +38,23 @@ export const setCurrentItem = payload => ({
   payload
 })
 
+export const SET_ITEMS_BY_USER = 'SET_ITEMS_BY_USER';
+export const setItemsByUser = payload => ({
+  type: SET_ITEMS_BY_USER,
+  payload
+})
 
+export const SET_OFFERS_MADE_BY_USER = 'SET_OFFERS_MADE_BY_USER';
+export const setOffersMadeByUser = payload => ({
+  type: SET_OFFERS_MADE_BY_USER,
+  payload
+})
 
-
+export const SET_OFFERS_REC_BY_USER = 'SET_OFFERS_REC_BY_USER';
+export const setOffersRecByUser = payload => ({
+  type: SET_OFFERS_REC_BY_USER,
+  payload
+})
 
 export function createUser(params) {
   fetch(`${API_BASE_URL}/users`, {
@@ -89,12 +103,12 @@ export function createItem(params) {
 
 export function createOffer(params) {
   return function action(dispatch) {
-    fetch(`${API_BASE_URL}/offers`, {
-      method: 'POST',
-      body: JSON.stringify(params),
-      headers: {
-        'Content-Type': 'application/json'
-      }
+    return fetch(`${API_BASE_URL}/offers`, {
+            method: 'POST',
+            body: JSON.stringify(params),
+            headers: {
+              'Content-Type': 'application/json'
+            }
     })
     .then(res => {
       if(!res.ok){
@@ -138,6 +152,49 @@ export function getItemById(id){
       })
       .then(item => dispatch(setCurrentItem(item)))
       .catch(err => console.log('retrieve item failed', err))
+  }
+}
+
+export function getItemsByUser(user_id){
+  return function action(dispatch){
+    fetch(`${API_BASE_URL}/items/byuser/${user_id}`)
+      .then(res => {
+        if(!res.ok){
+          return Promise.reject(res.statusText);
+        }
+        return res.json();
+      })
+      .then(items => dispatch(setItemsByUser(items)))
+      .catch(err => console.log('retrieve items by user failed', err))
+  }
+}
+
+export function getOffersMadeByUser(user_id){
+  return function action(dispatch){
+    fetch(`${API_BASE_URL}/offers/buyer/${user_id}`)
+      .then(res => {
+        if(!res.ok){
+          return Promise.reject(res.statusText);
+        }
+        return res.json();
+      })
+      .then(items => dispatch(setOffersMadeByUser(items)))
+      .catch(err => console.log('retrieve offers made by user failed', err)
+      )
+  }
+}
+
+export function getOffersRecByUser(user_id){
+  return function action(dispatch){
+    fetch(`${API_BASE_URL}/offers/owner/${user_id}`)
+    .then(res => {
+      if(!res.ok){
+        return Promise.reject(res.statusText);
+      }
+      return res.json();
+    })
+    .then(items => dispatch(setOffersRecByUser(items)))
+    .catch(err => console.log('retrieve offers recieved by user failed', err))
   }
 }
 
