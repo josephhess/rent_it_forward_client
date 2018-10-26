@@ -20,7 +20,7 @@ Key spots in server: routes, models, server.js
 
 screenshots:
 
-[Sign In/Up page](readme_screenshots/login_landing.png)
+![Sign In/Up page](readme_screenshots/login_landing.png)
 
 
 
