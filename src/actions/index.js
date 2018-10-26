@@ -1,5 +1,6 @@
 // import React from 'react';
 import {API_BASE_URL} from '../config.js';
+import {login} from '../actions/auth';
 
 
 export const LOGIN_USER = 'LOGIN_USER';
@@ -56,31 +57,30 @@ export const setOffersRecByUser = payload => ({
   payload
 })
 
-export function createUser(params) {
-  fetch(`${API_BASE_URL}/users`, {
-    method: 'POST',
-    body: JSON.stringify(params),
-    headers: {
-      'Content-Type': 'application/json',
-    }
-  }).then(res => res.json())
-  // .then(json => dispatch(push('/showall')))
-  .catch(err => console.log('create user error', err))
-}
-
-export const getAllItems = () => dispatch  => {
-  fetch(`${API_BASE_URL}/items`)
+export function createUser(params){
+  return function action(dispatch){
+    return fetch(`${API_BASE_URL}/users`, {
+      method: 'POST',
+      body: JSON.stringify(params),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
     .then(res => {
       if (!res.ok){
         return Promise.reject(res.statusText);
       }
       return res.json();
     })
-    .then(data => dispatch(showAllItems(data)));
+    .then(user => dispatch(login({
+      username: user.email,
+      password: params.password
+    })))
+    .catch(err => console.log('create user error', err))
+  }
 }
 
 export function createItem(params) {
-  
   return function action(dispatch,getState) {
     const authToken = getState().authReducer.authToken;
     return fetch(`${API_BASE_URL}/items`, {
@@ -102,6 +102,18 @@ export function createItem(params) {
     .catch(err => console.log('create items error', err))
   }
 }
+
+export const getAllItems = () => dispatch  => {
+  fetch(`${API_BASE_URL}/items`)
+    .then(res => {
+      if (!res.ok){
+        return Promise.reject(res.statusText);
+      }
+      return res.json();
+    })
+    .then(data => dispatch(showAllItems(data)));
+}
+
 
 export function createOffer(params) {
   return function action(dispatch) {
