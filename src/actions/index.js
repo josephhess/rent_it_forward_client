@@ -70,7 +70,6 @@ export const setOffersRecByUser = payload => ({
 })
 
 export function updateOfferStatus(params){
-  console.log(params)
   return function action(dispatch){
     return fetch(`${API_BASE_URL}/offers/${params.id}`, {
       method: 'PUT',

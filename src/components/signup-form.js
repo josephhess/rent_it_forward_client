@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import { createUser } from '../actions';
-import {login} from '../actions/auth';
 
 class SignUpForm extends React.Component {
   
@@ -16,11 +15,7 @@ class SignUpForm extends React.Component {
           lastName: event.target.lastName.value,
           zipCode: event.target.zipCode.value
         })
-      )
-  
-      // .then(() => this.props.dispatch(login))
-      // .then(() => this.props.history.push('/showall'))
-   
+      )   
   }
   render() {
     if (this.props.token){

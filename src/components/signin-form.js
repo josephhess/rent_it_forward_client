@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {login} from '../actions/auth';
-// import {Redirect} from 'react-router-dom';
 
 class SignInForm extends React.Component {
  
