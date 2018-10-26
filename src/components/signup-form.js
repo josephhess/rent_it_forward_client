@@ -5,17 +5,17 @@ import { createUser } from '../actions';
 
 class SignUpForm extends React.Component {
   
-  onSubmit(event) {
-    event.preventDefault();
-      this.props.dispatch(
-        createUser({
-          email: event.target.signupEmail.value,
-          password: event.target.signupPassWord.value,
-          firstName: event.target.firstName.value,
-          lastName: event.target.lastName.value,
-          zipCode: event.target.zipCode.value
-        })
-      )   
+onSubmit(event) {
+  event.preventDefault();
+    this.props.dispatch(
+      createUser({
+        email: event.target.signupEmail.value,
+        password: event.target.signupPassWord.value,
+        firstName: event.target.firstName.value,
+        lastName: event.target.lastName.value,
+        zipCode: event.target.zipCode.value
+      })
+    )   
   }
   render() {
     if (this.props.token){
