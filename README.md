@@ -4,23 +4,29 @@ Rent it Forward is a site for when you want to buy something that you only need 
 
 visit the live site at: https://fierce-lake-75543.herokuapp.com
 
-#dummy login credentials:
+### dummy login credentials:
 
 email: test@test.com
 password: 12345678
 
-Stack:
+### Stack:
 React, Redux client side
 express server side
 Mongo
 Node
 
-Key spots in client: src/actions, src/components,src/reducers, index.js
-Key spots in server: routes, models, server.js
+###### Key spots in client: 
+src/actions, src/components,src/reducers, index.js
+###### Key spots in server: 
+routes, models, server.js
 
-screenshots:
+### screenshots:
 
 ![Sign In/Up page](readme_screenshots/login_landing.png)
+![List all items page](readme_screenshots/show_all.png)
+![My Items page](readme_screenshots/my_items_page.png)
+![Make an offer page](readme_screenshots/make_and_offer.png)
+![Add item page](readme_screenshots/add_item_page.png)
 
 
 
