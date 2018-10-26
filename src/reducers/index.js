@@ -2,7 +2,8 @@
 import {  LOGIN_USER, SIGN_UP_USER ,ADD_ITEM,
           SHOW_ALL_ITEMS,MAKE_OFFER,SET_CURRENT_ITEM,
           SET_ITEMS_BY_USER,SET_OFFERS_MADE_BY_USER,
-          SET_OFFERS_REC_BY_USER
+          SET_OFFERS_REC_BY_USER,SET_CURRENT_OFFER,
+          UPDATE_CURRENT_OFFER
         } from '../actions';
 import jwt_decode from 'jwt-decode';
 
@@ -74,6 +75,18 @@ export const rentItForwardReducer = (state = initialState, action) => {
   if (action.type ===  SET_OFFERS_REC_BY_USER){
     return Object.assign({}, state, {
       current_user_offers_rec: action.payload
+    })
+  }
+  if (action.type === SET_CURRENT_OFFER){
+    return Object.assign({}, state, {
+      current_offer: action.payload
+    })
+  }
+  if (action.type === UPDATE_CURRENT_OFFER){
+    return Object.assign({}, state, {
+      current_offer: Object.assign({}, state.current_offer, {
+        status: action.payload
+      })
     })
   }
   return state;

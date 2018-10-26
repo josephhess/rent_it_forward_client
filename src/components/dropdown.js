@@ -20,10 +20,10 @@ class NavDropdown extends React.Component {
       Navigation
     </DropdownToggle>
     <DropdownMenu left="true">
-      <DropdownItem tag={Link} to="/">Home</DropdownItem>
       <DropdownItem tag={Link} to="/showall">View Items</DropdownItem>
       <DropdownItem tag={Link} to="/addItem">Add Item</DropdownItem>
       <DropdownItem tag={Link} to="/myItems">My items/offers</DropdownItem>
+      <DropdownItem tag={Link} to="/logout">Logout</DropdownItem>
     </DropdownMenu>
     </UncontrolledDropdown>
     <h1>Rent It Forward</h1>

@@ -39,6 +39,18 @@ export const setCurrentItem = payload => ({
   payload
 })
 
+export const SET_CURRENT_OFFER = 'SET_CURRENT_OFFER';
+export const setCurrentOffer = payload => ({
+  type: SET_CURRENT_OFFER,
+  payload
+})
+
+export const UPDATE_CURRENT_OFFER = 'UPDATE_CURRENT_OFFER';
+export const updateCurrentOffer = payload => ({
+  type: UPDATE_CURRENT_OFFER,
+  payload
+})
+
 export const SET_ITEMS_BY_USER = 'SET_ITEMS_BY_USER';
 export const setItemsByUser = payload => ({
   type: SET_ITEMS_BY_USER,
@@ -57,13 +69,36 @@ export const setOffersRecByUser = payload => ({
   payload
 })
 
-export function createUser(params){
+export function updateOfferStatus(params){
+  console.log(params)
   return function action(dispatch){
+    return fetch(`${API_BASE_URL}/offers/${params.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(params),
+      headers: {
+        'Content-Type': 'application/json',
+
+      }
+    })
+    .then(res => {
+      if(!res.ok){
+        return Promise.reject(res.statusText);
+      }
+      return res.json();
+    })
+    .then(offer => dispatch(setCurrentOffer(offer)))
+  }
+}
+
+export function createUser(params){
+  return function action(dispatch,getState){
+    const authToken = getState().authReducer.authToken;
     return fetch(`${API_BASE_URL}/users`, {
       method: 'POST',
       body: JSON.stringify(params),
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authToken}`
       }
     })
     .then(res => {
@@ -165,6 +200,20 @@ export function getItemById(id){
         return res.json();
       })
       .then(item => dispatch(setCurrentItem(item)))
+      .catch(err => console.log('retrieve item failed', err))
+  }
+}
+
+export function getOfferById(id){
+  return function action(dispatch){
+    fetch(`${API_BASE_URL}/offers/${id}`)
+      .then(res => {
+        if(!res.ok){
+          return Promise.reject(res.statusText);
+        }
+        return res.json();
+      })
+      .then(item => dispatch(setCurrentOffer(item)))
       .catch(err => console.log('retrieve item failed', err))
   }
 }

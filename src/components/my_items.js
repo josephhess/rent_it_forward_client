@@ -40,7 +40,7 @@ class MyItems extends React.Component {
      const myOffersRec = this.props.offers_rec.map( (offer) => {
       return (
       <tr key={offer._id}>
-         <td ><Link to={{pathname: 'makeOffer', state:  {id: offer.item_id}} }>{offer.item_name}</Link></td>
+         <td ><Link to={{pathname: 'updateStatus', state:  {id: offer._id}} }>{offer.item_name}</Link></td>
          <td >{offer.offer_price}</td>
          <td>{offer.status}</td>
        </tr>

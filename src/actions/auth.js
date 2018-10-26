@@ -69,6 +69,10 @@ export const login = (params) => dispatch => {
     );
 };
 
+export const logout = () => (dispatch) => {
+    dispatch(clearAuth());
+    clearAuthToken();
+}
 export const refreshAuthToken = () => (dispatch, getState) => {
     dispatch(authRequest());
     const authToken = getState().authReducer.authToken;

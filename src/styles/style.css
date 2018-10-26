@@ -212,6 +212,10 @@ a.dropdown-item{
   background-color: lightgray
 }
 
+.logout{
+	text-align: center;
+}
+
 
 .test_link{
   background-image: url('./eye.png');

@@ -11,6 +11,8 @@ import ShowMyItems from './components/my_items';
 import ShowAll from './components/show-all';
 import AddItem from './components/add_item';
 import MakeOffer from './components/add_offer';
+import UpdateStatus from './components/update_status';
+import Logout from './components/logout';
 import NavDropDown from './components/dropdown';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -27,6 +29,8 @@ ReactDOM.render(
         <Route path='/addItem' component={AddItem} exact={true}/>
         <Route path='/myItems' component={ShowMyItems} exact={true}/>
         <Route path='/makeOffer' component={MakeOffer} exact={true}/>
+        <Route path='/updateStatus' component={UpdateStatus} exact={true}/>
+        <Route path='/logout' component={Logout} exact={true}/>
         </div>
       </div>
     </BrowserRouter>
