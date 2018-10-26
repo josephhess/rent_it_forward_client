@@ -1,23 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {postUserLogin} from '../actions';
-import {Redirect} from 'react-router-dom';
+import {login} from '../actions/auth';
+// import {Redirect} from 'react-router-dom';
 
 class SignInForm extends React.Component {
  
     onSubmit(event) {
       event.preventDefault();
       this.props.dispatch(
-        postUserLogin({
+        login({
           username: event.target.email.value,
           password: event.target.passWord.value,
         })
-      );
+      )
+      .then(() => this.props.history.push('/showall'))
     };
     render() {
-      if(this.props.token){
-       return <Redirect to="/showall"/>
-      }
     return (
       <section>
         <form onSubmit={ e => this.onSubmit(e)}>

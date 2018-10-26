@@ -4,6 +4,10 @@ import {Redirect} from 'react-router-dom';
 import { createUser } from '../actions'
 
 class SignUpForm extends React.Component {
+
+  componentDidMount(){
+
+  }
   
   onSubmit(event) {
     event.preventDefault();
@@ -17,7 +21,7 @@ class SignUpForm extends React.Component {
    
   }
   render() {
-    if (this.props.loggedIn){
+    if (this.props.token){
       return <Redirect to="/showall"/>
     }
     return (
@@ -55,7 +59,7 @@ class SignUpForm extends React.Component {
 }
 
 export const mapStateToProps = (state) => {
-  return {loggedIn: state.loggedIn}
+  return {token: state.authReducer.authToken}
 };
 
 export default connect(mapStateToProps)(SignUpForm);

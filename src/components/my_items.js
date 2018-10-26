@@ -6,29 +6,16 @@ import {Link} from 'react-router-dom';
 class MyItems extends React.Component {
 
   componentDidMount(){
-    this.props.dispatch(getItemsByUser(this.props.current_user_id));
-    this.props.dispatch(getOffersMadeByUser(this.props.current_user_id));
-    this.props.dispatch(getOffersRecByUser(this.props.current_user_id));  
-  }
-  // const dummyData = [
-  //   {id: 1 ,name: 'Dewalt table saw' ,initial_price: 400},
-  //   {id: 2 ,name: 'Dewalt 12" tile saw' ,initial_price: 600},
-  //   {id: 3 ,name: 'Ryobi pressure washer',initial_price: 200},
-  //   {id: 4 ,name: 'Epson large format printer',initial_price: 150}
-  // ];
-  
-  // const htmlData = dummyData.map( item => {
-  //  return (
-  //  <tr>
-  //     <td><a href={`http://localhost:3000/show_item/${item.id}`}>click</a></td>
-  //     <td>{item.name}</td>
-  //     <td>{item.initial_price}</td>
-  //   </tr>
-  //  )
-  // })
-  
+    this.props.dispatch(getItemsByUser(this.props.current_user.id));
+    this.props.dispatch(getOffersMadeByUser(this.props.current_user.id));
+    this.props.dispatch(getOffersRecByUser(this.props.current_user.id));  
+  }  
 
   render(){
+
+    if(!this.props.current_user){
+      this.props.history.push('/');
+    }
 
     const myItems = this.props.items.map( (item) => {
       return (
@@ -110,10 +97,10 @@ class MyItems extends React.Component {
 
 export const mapStateToProps = (state) => {
   return {
-    items: state.current_user_items,
-    offers_made: state.current_user_offers_made,
-    offers_rec: state.current_user_offers_rec,
-    current_user_id: state.current_user_id
+    items: state.rentItForwardReducer.current_user_items,
+    offers_made: state.rentItForwardReducer.current_user_offers_made,
+    offers_rec: state.rentItForwardReducer.current_user_offers_rec,
+    current_user: state.authReducer.currentUser
   }
 }
 export default connect(mapStateToProps)(MyItems);

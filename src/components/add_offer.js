@@ -48,8 +48,8 @@ class MakeOffer extends React.Component {
 
 export const mapStateToProps = (state) => {
   return {
-    item: state.current_item,
-    current_user_id: state.current_user_id
+    item: state.rentItForwardReducer.current_item,
+    current_user_id: state.authReducer.currentUser.id
     
   }
 };

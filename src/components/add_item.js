@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {createItem} from '../actions';
-import {Redirect} from 'react-router-dom';
 
 class AddItem extends React.Component {
 
@@ -21,7 +20,7 @@ class AddItem extends React.Component {
 
   render(){
     if(!this.props.current_user_id){
-      return <Redirect to='/'/>
+      this.props.history.push('/');
     }
     return(
       <section>
@@ -43,7 +42,7 @@ class AddItem extends React.Component {
 
 export const mapStateToProps = (state) => {
   return {
-    current_user_id: state.current_user_id
+    current_user_id: state.authReducer.currentUser.id
   }
 };
 

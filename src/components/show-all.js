@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import '../styles/showall.css';
 import {getAllItems} from '../actions';
-import {Redirect, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class ShowAll extends React.Component {
 
@@ -11,13 +11,12 @@ componentDidMount(){
 }
 
   render(){
-    if( !this.props.current_user_id ){
-       return <Redirect to="/"/>
-      }
-
-    const htmlData = this.props.items.map( (item, index) => {
+    if (!this.props.token){
+      this.props.history.push('/')
+    }
+     const htmlData = this.props.items.map( (item, index) => {
       return (
-      <tr key={index}>
+      <tr key={item._id}>
          <td ><Link to={{pathname: 'makeOffer', state:  {id: item._id}} }>{item.name}</Link></td>
          <td >{item.initial_price}</td>
          <td className="display_if_wide">{item.description}</td>
@@ -44,8 +43,9 @@ componentDidMount(){
 
 export const mapStateToProps = (state) => {
   return {
-    items: state.allItems,
-    current_user_id: state.current_user_id
+    items: state.rentItForwardReducer.allItems,
+    current_user_id: state.authReducer.currentUser,
+    token: state.authReducer.authToken
   }
 }
 export default connect(mapStateToProps)(ShowAll);

@@ -80,13 +80,15 @@ export const getAllItems = () => dispatch  => {
 }
 
 export function createItem(params) {
-  return function action(dispatch, getState) {
+  
+  return function action(dispatch,getState) {
+    const authToken = getState().authReducer.authToken;
     return fetch(`${API_BASE_URL}/items`, {
             method: 'POST',
             body: JSON.stringify(params),
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${getState().token}`
+              'Authorization': `Bearer ${authToken}`
       }
     })
     .then(res => {

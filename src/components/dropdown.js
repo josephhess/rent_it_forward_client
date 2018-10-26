@@ -33,7 +33,7 @@ class NavDropdown extends React.Component {
 
 }
 export const mapStateToProps = (state) => {
-  return {token: state.token}
+  return {token: state.authReducer.authToken}
 };
 
 export default connect(mapStateToProps)(NavDropdown);
