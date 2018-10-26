@@ -17,7 +17,7 @@ componentDidMount(){
      const htmlData = this.props.items.map( (item, index) => {
       return (
       <tr key={item._id}>
-         <td ><Link to={{pathname: 'makeOffer', state:  {id: item._id}} }>{item.name}</Link></td>
+         <td className="link_text"><  Link to={{pathname: 'makeOffer', state:  {id: item._id}} }>{item.name}</Link></td>
          <td >{item.initial_price}</td>
          <td className="display_if_wide">{item.description}</td>
        </tr>
@@ -29,9 +29,9 @@ componentDidMount(){
         <table className="table_parent">
         <tbody>
           <tr>
-            <td >item name</td>
-            <td >asking price</td>
-            <td className="display_if_wide">description</td>
+            <td className="table_heading">item name</td>
+            <td className="table_heading">asking price</td>
+            <td className="description ">   description</td>
         </tr>
         {htmlData}
         </tbody>

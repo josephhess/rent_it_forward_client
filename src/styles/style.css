@@ -181,13 +181,38 @@ form.super input{
 	margin-top:0px;
 }
 
-.display_if_wide{
+.display_if_wide, .description{
 	position: absolute;
 	left: -9999em;
 }
 
-@media (min-width: 600px){
-	.display_if_wide {
+.table_heading{
+	white-space: nowrap;
+	text-align: left;
+}
+.description{
+    margin-left: 20px;
+    display: inline-block;
+    padding-top: 22px;
+}
+
+.link_text{
+	display: block;
+	min-width: 250px;
+}
+.display_if_wide {
+	display: inline-block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: no-wrap;
+}
+
+td {
+	height: 80px;
+}
+
+@media (min-width: 700px){
+	.display_if_wide,.description{
 		position: relative;
 		left: 0em;
 	}
