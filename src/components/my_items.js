@@ -20,7 +20,7 @@ class MyItems extends React.Component {
     const myItems = this.props.items.map( (item) => {
       return (
       <tr key={item._id}>
-         <td ><Link to={{pathname: 'makeOffer', state:  {id: item._id}} }>{item.name}</Link></td>
+         <td className="link_text"><Link to={{pathname: 'makeOffer', state:  {id: item._id}} }>{item.name}</Link></td>
          <td >{item.initial_price}</td>
          {/* <td className="display_if_wide">{item.description}</td> */}
        </tr>
@@ -30,7 +30,7 @@ class MyItems extends React.Component {
      const myOffersMade = this.props.offers_made.map( (offer) => {
       return (
       <tr key={offer._id}>
-         <td ><Link to={{pathname: 'makeOffer', state:  {id: offer.item_id}} }>{offer.item_name}</Link></td>
+         <td className="link_text"><Link to={{pathname: 'makeOffer', state:  {id: offer.item_id}} }>{offer.item_name}</Link></td>
          <td >{offer.offer_price}</td>
          <td>{offer.status}</td>
        </tr>
@@ -40,7 +40,7 @@ class MyItems extends React.Component {
      const myOffersRec = this.props.offers_rec.map( (offer) => {
       return (
       <tr key={offer._id}>
-         <td ><Link to={{pathname: 'updateStatus', state:  {id: offer._id}} }>{offer.item_name}</Link></td>
+         <td className="link_text"><Link to={{pathname: 'updateStatus', state:  {id: offer._id}} }>{offer.item_name}</Link></td>
          <td >{offer.offer_price}</td>
          <td>{offer.status}</td>
        </tr>
@@ -51,7 +51,7 @@ class MyItems extends React.Component {
     <section>
       <section>
       <span>My Items</span>
-        <table className="table_parent">
+        <table className="table_parent" aria-label="this table contains all the items you have listed on the site">
           <tbody>
           <tr>
             <td>item name</td>
@@ -64,7 +64,7 @@ class MyItems extends React.Component {
       <section>
       <span className="linerule"></span>
       <span>My Offers Made</span>
-        <table className="table_parent">
+        <table className="table_parent" aria-label="this table contains all the offers you have made on other users items">
           <tbody>
           <tr>
             <td>item name</td>
@@ -78,7 +78,7 @@ class MyItems extends React.Component {
       <section>
       <span className="linerule"></span>
       <span>My Offers Recieved</span>
-        <table className="table_parent">
+        <table className="table_parent" aria-label="this table contains all the offers other users have made on items you have listed">
           <tbody>
           <tr>
             <td>item name</td>

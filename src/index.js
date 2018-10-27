@@ -22,7 +22,7 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
       <NavDropDown/>
-        <div className="content-wrapper">
+        <main className="content-wrapper">
         <Route path='/' component={SignInForm} exact={true}/>
         <Route path='/' component={SignUpForm} exact={true}/>
         <Route path='/showall' component={ShowAll} exact={true}/>
@@ -31,7 +31,7 @@ ReactDOM.render(
         <Route path='/makeOffer' component={MakeOffer} exact={true}/>
         <Route path='/updateStatus' component={UpdateStatus} exact={true}/>
         <Route path='/logout' component={Logout} exact={true}/>
-        </div>
+        </main>
       </div>
     </BrowserRouter>
   </Provider>,

@@ -35,11 +35,13 @@ class MakeOffer extends React.Component {
         <span>{this.props.item.description}</span>
         <span className="linerule"></span>
         <form className="super" onSubmit={e => this.onSubmit(e)}>
-          <label htmlFor="price">Your Offer</label>
-          <input className="add_item_input" type="number" name="price" id="itemPrice" ></input>
-          <button type="submit" name="submit" id="addItemButton">
-            Submit
-          </button>
+          <fieldset>
+            <label htmlFor="price">Your Offer</label>
+            <input aria-labelledby="price" className="add_item_input" type="number" name="price" id="price" ></input>
+            <button type="submit" name="submit" id="addItemButton">
+              Submit
+            </button>
+          </fieldset>
         </form>
       </section>
     )
